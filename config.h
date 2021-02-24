@@ -82,6 +82,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_l,         setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_v,         zoom,           {0} }, // view
 	{ MODKEY,                       XK_z,         togglefullscr,  {0} }, // view
+	{ MODKEY,                       XK_comma,     shiftviewclients, { .i = +1 } },
+	{ MODKEY,                       XK_period,    shiftviewclients, { .i = -1 } },
 	{ MODKEY,                       XK_grave,     view,           {0} },
 	{ MODKEY,                       XK_BackSpace, killclient,     {0} },
 	{ MODKEY,                       XK_space,     setlayout,      {0} },
