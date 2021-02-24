@@ -66,41 +66,39 @@ static const char *firefox[]  = { "firefox", NULL };
 static const char *maimshot[]  = { "clipshot", NULL };
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_Return, spawn,          {.v = rofidrun } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = rofiwind } },
-	{ MODKEY,                       XK_a,      spawn,          {.v = rofipass } },
-	{ MODKEY,                       XK_s,      spawn,          {.v = maimshot } },
-	{ MODKEY,                       XK_m,      spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_f,      spawn,          {.v = firefox } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_a,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_x,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_z,      zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_BackSpace, killclient,  {0} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY,                       XK_p,      togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } }, //TODO bracketright
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	/* modifier                     key           function        argument */
+	{ MODKEY,                       XK_Return,    spawn,          {.v = rofidrun } },
+	{ MODKEY,                       XK_w,         spawn,          {.v = rofiwind } }, //window
+	{ MODKEY,                       XK_g,         spawn,          {.v = rofipass } }, //gnupass
+	{ MODKEY,                       XK_s,         spawn,          {.v = maimshot } }, //scrot
+	{ MODKEY,                       XK_m,         spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_f,         spawn,          {.v = firefox } },
+	{ MODKEY,                       XK_b,         togglebar,      {0} },
+	{ MODKEY,                       XK_j,         focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_k,         focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_a,         incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_x,         incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_h,         setmfact,       {.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_l,         setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_v,         zoom,           {0} }, // view
+	{ MODKEY,                       XK_Tab,       view,           {0} },
+	{ MODKEY,                       XK_BackSpace, killclient,  {0} },
+	{ MODKEY,                       XK_space,     setlayout,      {0} },
+	{ MODKEY,                       XK_p,         togglefloating, {0} },
+	{ MODKEY,                       XK_0,         view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_0,         tag,            {.ui = ~0 } },
+	{ MODKEY,                       XK_n,         focusmon,       {.i = +1 } }, //next monitor
+	{ MODKEY|ShiftMask,             XK_n,         tagmon,         {.i = +1 } },
+	TAGKEYS(                        XK_1,                         0)
+	TAGKEYS(                        XK_2,                         1)
+	TAGKEYS(                        XK_3,                         2)
+	TAGKEYS(                        XK_4,                         3)
+	TAGKEYS(                        XK_5,                         4)
+	TAGKEYS(                        XK_6,                         5)
+	TAGKEYS(                        XK_7,                         6)
+	TAGKEYS(                        XK_8,                         7)
+	TAGKEYS(                        XK_9,                         8)
+	{ MODKEY|ShiftMask,             XK_q,         quit,           {0} },
 };
 
 /* button definitions */
