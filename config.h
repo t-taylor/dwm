@@ -26,7 +26,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "qjackctl", NULL,       NULL,       0,            1,           -1 },
+	{ "chatt",    NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
@@ -84,8 +85,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_l,         setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_v,         zoom,           {0} }, // view
 	{ MODKEY,                       XK_z,         togglefullscr,  {0} }, // view
-	{ MODKEY,                       XK_comma,     shiftviewclients, { .i = +1 } },
-	{ MODKEY,                       XK_period,    shiftviewclients, { .i = -1 } },
+	{ MODKEY,                       XK_l,         shiftviewclients, { .i = +1 } },
+	{ MODKEY,                       XK_h,         shiftviewclients, { .i = -1 } },
 	{ MODKEY,                       XK_grave,     view,           {0} },
 	{ MODKEY,                       XK_BackSpace, killclient,     {0} },
 	{ MODKEY,                       XK_space,     setlayout,      {0} },
