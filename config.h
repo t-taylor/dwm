@@ -81,12 +81,16 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,         pushup,         {0} },
 	{ MODKEY,                       XK_a,         incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_x,         incnmaster,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_h,         setmfact,       {.f = -0.05} },
-	{ MODKEY|ShiftMask,             XK_l,         setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_comma,     setmfact,       {.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_period,    setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_v,         zoom,           {0} }, // view
 	{ MODKEY,                       XK_z,         togglefullscr,  {0} }, // view
 	{ MODKEY,                       XK_l,         shiftviewclients, { .i = +1 } },
 	{ MODKEY,                       XK_h,         shiftviewclients, { .i = -1 } },
+	{ MODKEY|ShiftMask,             XK_l,         shiftviewclientsandmove, { .i = +1 } },
+	{ MODKEY|ShiftMask,             XK_h,         shiftviewclientsandmove, { .i = -1 } },
+	{ MODKEY,                       XK_semicolon, viewnewtag,     {0} },
+	{ MODKEY,                       XK_apostrophe,moveandviewnewtag,{0} },
 	{ MODKEY,                       XK_grave,     view,           {0} },
 	{ MODKEY,                       XK_BackSpace, killclient,     {0} },
 	{ MODKEY,                       XK_space,     setlayout,      {0} },
