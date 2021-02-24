@@ -3,7 +3,11 @@
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
+static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const int showsystray        = 1;     /* 0 means no systray */
+static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=8" };
 static const char col_gray1[]       = "#222222";
@@ -82,8 +86,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,         pushup,         {0} },
 	{ MODKEY,                       XK_a,         incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_x,         incnmaster,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_comma,     setmfact,       {.f = -0.05} },
-	{ MODKEY|ShiftMask,             XK_period,    setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_comma,     setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_period,    setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_v,         zoom,           {0} }, // view
 	{ MODKEY,                       XK_z,         togglefullscr,  {0} }, // view
 	{ MODKEY,                       XK_l,         shiftviewclients, { .i = +1 } },
