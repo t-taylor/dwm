@@ -188,7 +188,9 @@ static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
 static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
+static void moveandviewnewtag(const Arg *arg);
 static void movemouse(const Arg *arg);
+static void movetonewtag(const Arg *arg);
 static Client *nexttiled(Client *c);
 static void pop(Client *);
 static Client *prevtiled(Client *c);
@@ -243,6 +245,7 @@ static void updatetitle(Client *c);
 static void updatewindowtype(Client *c);
 static void updatewmhints(Client *c);
 static void view(const Arg *arg);
+static void viewnewtag(const Arg *arg);
 static void warp(const Client *c);
 static Client *wintoclient(Window w);
 static Monitor *wintomon(Window w);
@@ -1203,6 +1206,37 @@ motionnotify(XEvent *e)
 }
 
 void
+moveandviewnewtag(const Arg *arg)
+{
+	Arg shifted;
+	Client *c;
+	unsigned int tagmask = 0;
+
+	for (c = selmon->clients; c; c = c->next)
+		#if SCRATCHPADS_PATCH
+		if (!(c->tags & SPTAGMASK))
+			tagmask = tagmask | c->tags;
+		#else
+		tagmask = tagmask | c->tags;
+		#endif // SCRATCHPADS_PATCH
+	#if SCRATCHPADS_PATCH
+	shifted.ui = selmon->tagset[selmon->seltags] & ~SPTAGMASK;
+	#else
+	shifted.ui = selmon->tagset[selmon->seltags];
+	#endif // SCRATCHPADS_PATCH
+	tagmask = ~tagmask;
+		do {
+			shifted.ui = (shifted.ui << 1)
+			   | (shifted.ui >> (LENGTH(tags) - 1));
+			#if SCRATCHPADS_PATCH
+			shifted.ui &= ~SPTAGMASK;
+			#endif // SCRATCHPADS_PATCH
+		} while (tagmask && !(shifted.ui & tagmask));
+	tag(&shifted);
+	view(&shifted);
+}
+
+void
 movemouse(const Arg *arg)
 {
 	int x, y, ocx, ocy, nx, ny;
@@ -1261,6 +1295,67 @@ movemouse(const Arg *arg)
 		focus(NULL);
 	}
 }
+
+void
+movetonewtag(const Arg *arg)
+{
+	Arg shifted;
+	Client *c;
+	unsigned int tagmask = 0;
+
+	for (c = selmon->clients; c; c = c->next)
+		#if SCRATCHPADS_PATCH
+		if (!(c->tags & SPTAGMASK))
+			tagmask = tagmask | c->tags;
+		#else
+		tagmask = tagmask | c->tags;
+		#endif // SCRATCHPADS_PATCH
+	#if SCRATCHPADS_PATCH
+	shifted.ui = selmon->tagset[selmon->seltags] & ~SPTAGMASK;
+	#else
+	shifted.ui = selmon->tagset[selmon->seltags];
+	#endif // SCRATCHPADS_PATCH
+	tagmask = ~tagmask;
+		do {
+			shifted.ui = (shifted.ui << 1)
+			   | (shifted.ui >> (LENGTH(tags) - 1));
+			#if SCRATCHPADS_PATCH
+			shifted.ui &= ~SPTAGMASK;
+			#endif // SCRATCHPADS_PATCH
+		} while (tagmask && !(shifted.ui & tagmask));
+	tag(&shifted);
+}
+
+void
+viewnewtag(const Arg *arg)
+{
+	Arg shifted;
+	Client *c;
+	unsigned int tagmask = 0;
+
+	for (c = selmon->clients; c; c = c->next)
+		#if SCRATCHPADS_PATCH
+		if (!(c->tags & SPTAGMASK))
+			tagmask = tagmask | c->tags;
+		#else
+		tagmask = tagmask | c->tags;
+		#endif // SCRATCHPADS_PATCH
+	#if SCRATCHPADS_PATCH
+	shifted.ui = selmon->tagset[selmon->seltags] & ~SPTAGMASK;
+	#else
+	shifted.ui = selmon->tagset[selmon->seltags];
+	#endif // SCRATCHPADS_PATCH
+	tagmask = ~tagmask;
+		do {
+			shifted.ui = (shifted.ui << 1)
+			   | (shifted.ui >> (LENGTH(tags) - 1));
+			#if SCRATCHPADS_PATCH
+			shifted.ui &= ~SPTAGMASK;
+			#endif // SCRATCHPADS_PATCH
+		} while (tagmask && !(shifted.ui & tagmask));
+	view(&shifted);
+}
+
 
 Client *
 nexttiled(Client *c)
