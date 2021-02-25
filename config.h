@@ -10,15 +10,14 @@ static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=8" };
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_bg[]          = "#282828";
+static const char col_gray[]        = "#928374";
+static const char col_cyan[]        = "#458588";
+static const char col_fg[]          = "#ebdbb2";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray,  col_gray,    col_bg  },
+	[SchemeSel]  = { col_gray,  col_bg,      col_fg    },
 };
 
 /* tagging */
@@ -30,9 +29,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "qjackctl", NULL,       NULL,       0,            1,           -1 },
-	{ "chatt",    NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "QJackCtl", NULL,       NULL,       0,            1,           -1 },
+	{ "chatty",   NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -61,14 +59,14 @@ static const Layout layouts[] = {
 
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu", NULL };
 
 /* commands */
 static const char *rofidrun[] = { "rofi", "-show", "drun", "-show-icons", NULL };
 static const char *rofiwind[] = { "rofi", "-show", "window", "-show-icons", NULL };
 static const char *rofipass[] = { "rofi-pass", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
-static const char *firefox[]  = { "firefox", NULL };
+static const char *chromiu[]  = { "chromium", NULL };
 static const char *maimshot[]  = { "clipshot", NULL };
 
 static Key keys[] = {
@@ -78,7 +76,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,         spawn,          {.v = rofipass } }, //gnupass
 	{ MODKEY,                       XK_s,         spawn,          {.v = maimshot } }, //scrot
 	{ MODKEY,                       XK_m,         spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_f,         spawn,          {.v = firefox } },
+	{ MODKEY,                       XK_f,         spawn,          {.v = chromiu } },
 	{ MODKEY,                       XK_b,         togglebar,      {0} },
 	{ MODKEY,                       XK_j,         focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,         focusstack,     {.i = -1 } },
@@ -104,6 +102,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_0,         tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_n,         focusmon,       {.i = +1 } }, //next monitor
 	{ MODKEY|ShiftMask,             XK_n,         tagmon,         {.i = +1 } },
+	// rhytmbox
+	{ MODKEY,                       XK_Insert,    spawn,          SHCMD("rhyctl -p") },
+	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("rhyctl -q") },
+	{ MODKEY,                       XK_Next,      spawn,          SHCMD("rhythmbox-client --play-pause") },
+	{ MODKEY,                       XK_Up,        spawn,          SHCMD("rhyctl -v 0.02") },
+	{ MODKEY,                       XK_Down,      spawn,          SHCMD("rhyctl -v -0.02") },
+	{ MODKEY,                       XK_Left,      spawn,          SHCMD("rhythmbox-client --previous") },
+	{ MODKEY,                       XK_Right,     spawn,          SHCMD("rhythmbox-client --next") },
 	TAGKEYS(                        XK_1,                         0)
 	TAGKEYS(                        XK_2,                         1)
 	TAGKEYS(                        XK_3,                         2)
@@ -113,7 +119,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                         6)
 	TAGKEYS(                        XK_8,                         7)
 	TAGKEYS(                        XK_9,                         8)
-	{ 0,                            HOLDKEY,	  holdbar,        {0} },
+	//{ 0,                            HOLDKEY,	  holdbar,        {0} },
 	{ MODKEY|ShiftMask,             XK_q,         quit,           {0} },
 };
 
