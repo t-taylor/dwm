@@ -101,7 +101,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_0,         tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_n,         focusmon,       {.i = +1 } }, //next monitor
 	{ MODKEY|ShiftMask,             XK_n,         tagmon,         {.i = +1 } },
-	// rhytmbox
+	{ MODKEY|ControlMask,           XK_n,         tagallmon,      {.i = +1 } },
+	// rhythmbox
 	{ MODKEY,                       XK_Insert,    spawn,          SHCMD("rhyctl -p") },
 	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("rhyctl -q") },
 	{ MODKEY,                       XK_Next,      spawn,          SHCMD("rhythmbox-client --play-pause") },

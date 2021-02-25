@@ -94,6 +94,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_semicolon, movetonewtag,   {0} },
 	{ MODKEY|ShiftMask,             XK_semicolon, viewnewtag,     {0} },
 	{ MODKEY,                       XK_apostrophe,moveandviewnewtag,{0} },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_comma,  tagallmon,      {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_period, tagallmon,      {.i = -1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
