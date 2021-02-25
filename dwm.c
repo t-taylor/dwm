@@ -255,7 +255,7 @@ static void spawn(const Arg *arg);
 static Monitor *systraytomon(Monitor *m);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
-static void tagallmon(const Arg *arg);
+//static void tagallmon(const Arg *arg);
 static void tile(Monitor *);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
@@ -2245,47 +2245,47 @@ tagmon(const Arg *arg)
 	sendmon(selmon->sel, dirtomon(arg->i));
 }
 
-void
-tagallmon(const Arg *arg)
-{
-	Monitor *m;
-	Client *c, *last, *slast, *next;
-
-	if (!mons->next)
-		return;
-
-	m = dirtomon(arg->i);
-	for (last = m->clients; last && last->next; last = last->next);
-	for (slast = m->stack; slast && slast->snext; slast = slast->snext);
-
-	for (c = selmon->clients; c; c = next) {
-		next = c->next;
-		if (!ISVISIBLE(c))
-			continue;
-		unfocus(c, 1);
-		detach(c);
-		detachstack(c);
-		c->mon = m;
-		c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
-		c->next = NULL;
-		c->snext = NULL;
-		if (last)
-			last = last->next = c;
-		else
-			m->clients = last = c;
-		if (slast)
-			slast = slast->snext = c;
-		else
-			m->stack = slast = c;
-		if (c->isfullscreen) {
-			resizeclient(c, c->mon->mx, c->mon->my, c->mon->mw, c->mon->mh);
-			XRaiseWindow(dpy, c->win);
-		}
-	}
-
-	focus(NULL);
-	arrange(NULL);
-}
+//void
+//tagallmon(const Arg *arg)
+//{
+//	Monitor *m;
+//	Client *c, *last, *slast, *next;
+//
+//	if (!mons->next)
+//		return;
+//
+//	m = dirtomon(arg->i);
+//	for (last = m->clients; last && last->next; last = last->next);
+//	for (slast = m->stack; slast && slast->snext; slast = slast->snext);
+//
+//	for (c = selmon->clients; c; c = next) {
+//		next = c->next;
+//		if (!ISVISIBLE(c))
+//			continue;
+//		unfocus(c, 1);
+//		detach(c);
+//		detachstack(c);
+//		c->mon = m;
+//		c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
+//		c->next = NULL;
+//		c->snext = NULL;
+//		if (last)
+//			last = last->next = c;
+//		else
+//			m->clients = last = c;
+//		if (slast)
+//			slast = slast->snext = c;
+//		else
+//			m->stack = slast = c;
+//		if (c->isfullscreen) {
+//			resizeclient(c, c->mon->mx, c->mon->my, c->mon->mw, c->mon->mh);
+//			XRaiseWindow(dpy, c->win);
+//		}
+//	}
+//
+//	focus(NULL);
+//	arrange(NULL);
+//}
 
 void
 tile(Monitor *m)
