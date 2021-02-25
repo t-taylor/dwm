@@ -45,6 +45,7 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ NULL,       NULL },
 };
 
 /* key definitions */
@@ -82,6 +83,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
@@ -96,6 +99,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_apostrophe,moveandviewnewtag,{0} },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_comma,  tagallmon,      {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_period, tagallmon,      {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_n,         newtagallmon,   {.i = +1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

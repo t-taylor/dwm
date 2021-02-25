@@ -186,6 +186,7 @@ static void configure(Client *c);
 static void configurenotify(XEvent *e);
 static void configurerequest(XEvent *e);
 static Monitor *createmon(void);
+static void cyclelayout(const Arg *arg);
 static void destroynotify(XEvent *e);
 static void detach(Client *c);
 static void detachstack(Client *c);
@@ -215,6 +216,7 @@ static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
 static void moveandviewnewtag(const Arg *arg);
 static void movemouse(const Arg *arg);
+static void newtagallmon(const Arg *arg);
 static Client *nexttiled(Client *c);
 static void pop(Client *);
 static Client *prevtiled(Client *c);
@@ -801,6 +803,23 @@ createmon(void)
 	}
 
 	return m;
+}
+
+void
+cyclelayout(const Arg *arg) {
+	Layout *l;
+	for(l = (Layout *)layouts; l != selmon->lt[selmon->sellt]; l++);
+	if(arg->i > 0) {
+		if(l->symbol && (l + 1)->symbol)
+			setlayout(&((Arg) { .v = (l + 1) }));
+		else
+			setlayout(&((Arg) { .v = layouts }));
+	} else {
+		if(l != layouts && (l - 1)->symbol)
+			setlayout(&((Arg) { .v = (l - 1) }));
+		else
+			setlayout(&((Arg) { .v = &layouts[LENGTH(layouts) - 2] }));
+	}
 }
 
 void
@@ -1421,6 +1440,74 @@ movemouse(const Arg *arg)
 }
 
 void
+newtagallmon(const Arg *arg)
+{
+	Arg shifted;
+	Monitor *m;
+	Client *c, *last, *slast, *next;
+	unsigned int tagmask = 0;
+
+	if (!mons->next)
+		return;
+
+	m = dirtomon(arg->i);
+	for (last = m->clients; last && last->next; last = last->next);
+	for (slast = m->stack; slast && slast->snext; slast = slast->snext);
+
+	for (c = m->clients; c; c = c->next)
+		#if SCRATCHPADS_PATCH
+		if (!(c->tags & SPTAGMASK))
+			tagmask = tagmask | c->tags;
+		#else
+		tagmask = tagmask | c->tags;
+		#endif // SCRATCHPADS_PATCH
+
+	#if SCRATCHPADS_PATCH
+	shifted.ui = selmon->tagset[selmon->seltags] & ~SPTAGMASK;
+	#else
+	shifted.ui = selmon->tagset[selmon->seltags];
+	#endif // SCRATCHPADS_PATCH
+	tagmask = ~tagmask;
+	do {
+		shifted.ui = (shifted.ui << 1)
+			| (shifted.ui >> (LENGTH(tags) - 1));
+		#if SCRATCHPADS_PATCH
+		shifted.ui &= ~SPTAGMASK;
+		#endif // SCRATCHPADS_PATCH
+	} while (tagmask && !(shifted.ui & tagmask));
+
+	for (c = selmon->clients; c; c = next) {
+		next = c->next;
+		if (!ISVISIBLE(c))
+			continue;
+		unfocus(c, 1);
+		detach(c);
+		detachstack(c);
+		c->mon = m;
+		c->tags = shifted.ui & TAGMASK; /* assign tags of target monitor */
+		c->next = NULL;
+		c->snext = NULL;
+		if (last)
+			last = last->next = c;
+		else
+			m->clients = last = c;
+		if (slast)
+			slast = slast->snext = c;
+		else
+			m->stack = slast = c;
+		if (c->isfullscreen) {
+			resizeclient(c, c->mon->mx, c->mon->my, c->mon->mw, c->mon->mh);
+			XRaiseWindow(dpy, c->win);
+		}
+	}
+
+	selmon = m;
+	view(&shifted);
+	focus(NULL);
+	arrange(NULL);
+}
+
+void
 viewnewtag(const Arg *arg)
 {
 	Arg shifted;
@@ -1440,13 +1527,13 @@ viewnewtag(const Arg *arg)
 	shifted.ui = selmon->tagset[selmon->seltags];
 	#endif // SCRATCHPADS_PATCH
 	tagmask = ~tagmask;
-		do {
-			shifted.ui = (shifted.ui << 1)
-			   | (shifted.ui >> (LENGTH(tags) - 1));
-			#if SCRATCHPADS_PATCH
-			shifted.ui &= ~SPTAGMASK;
-			#endif // SCRATCHPADS_PATCH
-		} while (tagmask && !(shifted.ui & tagmask));
+	do {
+		shifted.ui = (shifted.ui << 1)
+			| (shifted.ui >> (LENGTH(tags) - 1));
+		#if SCRATCHPADS_PATCH
+		shifted.ui &= ~SPTAGMASK;
+		#endif // SCRATCHPADS_PATCH
+	} while (tagmask && !(shifted.ui & tagmask));
 	view(&shifted);
 }
 

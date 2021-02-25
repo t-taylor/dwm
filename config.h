@@ -95,13 +95,13 @@ static Key keys[] = {
 	{ MODKEY,                       XK_apostrophe,moveandviewnewtag,{0} },
 	{ MODKEY,                       XK_grave,     view,           {0} },
 	{ MODKEY,                       XK_BackSpace, killclient,     {0} },
-	{ MODKEY,                       XK_space,     setlayout,      {0} },
+	{ MODKEY,                       XK_space,     cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_p,         togglefloating, {0} },
 	{ MODKEY,                       XK_0,         view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,         tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_n,         focusmon,       {.i = +1 } }, //next monitor
 	{ MODKEY|ShiftMask,             XK_n,         tagmon,         {.i = +1 } },
-	{ MODKEY|ControlMask,           XK_n,         tagallmon,      {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_n,         newtagallmon,   {.i = +1 } },
 	// rhythmbox
 	{ MODKEY,                       XK_Insert,    spawn,          SHCMD("rhyctl -p") },
 	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("rhyctl -q") },
