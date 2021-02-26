@@ -36,7 +36,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -64,7 +64,7 @@ static const char *dmenucmd[] = { "dmenu", NULL };
 static const char *rofidrun[] = { "rofi", "-show", "drun", "-show-icons", NULL };
 static const char *rofiwind[] = { "rofi", "-show", "window", "-show-icons", NULL };
 static const char *rofipass[] = { "rofi-pass", NULL };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "st", "-e", "tmux", "-2", NULL };
 static const char *chromiu[]  = { "chromium", NULL };
 static const char *maimshot[]  = { "clipshot", NULL };
 
