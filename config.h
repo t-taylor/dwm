@@ -61,18 +61,18 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu", NULL };
 
 /* commands */
-static const char *rofidrun[] = { "rofi", "-show", "run", NULL };
-static const char *rofiwind[] = { "rofi", "-show", "window", "-show-icons", NULL };
-static const char *rofipass[] = { "rofi-pass", NULL };
+static const char *amenudrun[] = { "amenu", "-r", NULL };
+static const char *amenuwind[] = { "amenu", "-w", NULL };
+static const char *amenupass[] = { "amenu", "-p", NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", "-2", NULL };
 static const char *chromiu[]  = { "chromium", NULL };
 static const char *maimshot[]  = { "clipshot", NULL };
 
 static Key keys[] = {
 	/* modifier                     key           function        argument */
-	{ MODKEY,                       XK_Return,    spawn,          {.v = rofidrun } },
-	{ MODKEY,                       XK_w,         spawn,          {.v = rofiwind } }, //window
-	{ MODKEY,                       XK_g,         spawn,          {.v = rofipass } }, //gnupass
+	{ MODKEY,                       XK_Return,    spawn,          {.v = amenudrun } },
+	{ MODKEY,                       XK_w,         spawn,          {.v = amenuwind } }, //window
+	{ MODKEY,                       XK_g,         spawn,          {.v = amenupass } }, //gnupass
 	{ MODKEY,                       XK_s,         spawn,          {.v = maimshot } }, //scrot
 	{ MODKEY,                       XK_m,         spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_f,         spawn,          {.v = chromiu } },
