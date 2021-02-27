@@ -30,7 +30,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "QJackCtl", NULL,       NULL,       0,            1,           -1 },
-	{ "chatty",   NULL,       NULL,       0,            1,           -1 },
+	{ "amenu",    NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -61,7 +61,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu", NULL };
 
 /* commands */
-static const char *rofidrun[] = { "rofi", "-show", "drun", "-show-icons", NULL };
+static const char *rofidrun[] = { "rofi", "-show", "run", NULL };
 static const char *rofiwind[] = { "rofi", "-show", "window", "-show-icons", NULL };
 static const char *rofipass[] = { "rofi-pass", NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", "-2", NULL };
