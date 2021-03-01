@@ -67,8 +67,8 @@ static const char *maimshot[]  = { "clipshot", NULL };
 
 static Key keys[] = {
 	/* modifier                     key           function        argument */
-	{ MODKEY,                       XK_Return,    spawn,          {.v = amenudrun } },
-	{ MODKEY,                       XK_w,         spawn,          {.v = amenuwind } }, //window
+	{ MODKEY,                       XK_o,         spawn,          {.v = amenudrun } },
+	{ MODKEY,                       XK_i,         spawn,          {.v = amenuwind } }, //window
 	{ MODKEY,                       XK_g,         spawn,          {.v = amenupass } }, //gnupass
 	{ MODKEY,                       XK_s,         spawn,          {.v = maimshot } }, //scrot
 	{ MODKEY,                       XK_m,         spawn,          {.v = termcmd } },
