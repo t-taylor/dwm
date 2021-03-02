@@ -11,13 +11,19 @@ static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=8" };
 static const char col_bg[]          = "#282828";
-static const char col_gray[]        = "#928374";
+static const char col_gray1[]        = "#928374";
+static const char col_gray2[]        = "#a89984";
 static const char col_cyan[]        = "#458588";
 static const char col_fg[]          = "#ebdbb2";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray,  col_bg,    col_bg  },
-	[SchemeSel]  = { col_gray,  col_bg,    col_fg  },
+	/*                   fg         bg          border   */
+	[SchemeNorm] =     { col_gray1, col_bg,     col_bg  },
+	[SchemeSel]  =     { col_gray1, col_bg,     col_fg  },
+	[SchemeStatus] =   { col_gray1, col_bg,     "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeTagsSel] =  { col_fg,    col_gray1,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+    [SchemeTagsNorm] = { col_gray1, col_bg,     "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+    [SchemeInfoSel] =  { col_gray1, col_cyan,   "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+    [SchemeInfoNorm] = { col_gray2, col_bg,     "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
