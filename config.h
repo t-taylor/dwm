@@ -98,7 +98,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_apostrophe,moveandviewnewtag,{0} },
 	{ MODKEY,                       XK_grave,     view,           {0} },
 	{ MODKEY,                       XK_BackSpace, killclient,     {0} },
-	{ MODKEY,                       XK_space,     cyclelayout,    {.i = +1 } },
+	{ MODKEY,                       XK_y,         cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_p,         togglefloating, {0} },
 	{ MODKEY,                       XK_0,         view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,         tag,            {.ui = ~0 } },
@@ -129,10 +129,7 @@ static Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkLtSymbol,          0,              Button1,        cyclelayout,    {0} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
