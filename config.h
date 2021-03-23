@@ -113,6 +113,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Down,      spawn,          SHCMD("rhyctl -v -0.02") },
 	{ MODKEY,                       XK_Left,      spawn,          SHCMD("rhythmbox-client --previous") },
 	{ MODKEY,                       XK_Right,     spawn,          SHCMD("rhythmbox-client --next") },
+	//lock
+	{ MODKEY|ControlMask,           XK_l,         spawn,          SHCMD("slock") },
 	TAGKEYS(                        XK_1,                         0)
 	TAGKEYS(                        XK_2,                         1)
 	TAGKEYS(                        XK_3,                         2)
