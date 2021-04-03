@@ -1,5 +1,4 @@
-/* See LICENSE file for copyright and license details. */
-
+#include <X11/XF86keysym.h>
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -37,6 +36,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "QJackCtl", NULL,       NULL,       0,            1,           -1 },
 	{ "amenu",    NULL,       NULL,       0,            1,           -1 },
+	{ "vimpc",    NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -74,7 +74,9 @@ static const char *maimshot[]  = { "clipshot", NULL };
 static Key keys[] = {
 	/* modifier                     key           function        argument */
 	{ MODKEY,                       XK_o,         spawn,          {.v = amenudrun } },
+	{ 0,                            XF86XK_Launch5, spawn,          {.v = amenudrun } },
 	{ MODKEY,                       XK_i,         spawn,          {.v = amenuwind } }, //window
+	{ 0,                            XF86XK_Launch6, spawn,          {.v = amenuwind } },
 	{ MODKEY,                       XK_g,         spawn,          {.v = amenupass } }, //gnupass
 	{ MODKEY,                       XK_s,         spawn,          {.v = maimshot } }, //scrot
 	{ MODKEY,                       XK_m,         spawn,          {.v = termcmd } },
@@ -106,13 +108,12 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_n,         tagmon,         {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_n,         newtagallmon,   {.i = +1 } },
 	// rhythmbox
-	{ MODKEY,                       XK_Insert,    spawn,          SHCMD("rhyctl -p") },
-	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("rhyctl -q") },
-	{ MODKEY,                       XK_Next,      spawn,          SHCMD("rhythmbox-client --play-pause") },
-	{ MODKEY,                       XK_Up,        spawn,          SHCMD("rhyctl -v 0.02") },
-	{ MODKEY,                       XK_Down,      spawn,          SHCMD("rhyctl -v -0.02") },
-	{ MODKEY,                       XK_Left,      spawn,          SHCMD("rhythmbox-client --previous") },
-	{ MODKEY,                       XK_Right,     spawn,          SHCMD("rhythmbox-client --next") },
+	{ 0,                            XF86XK_Tools,			spawn,      SHCMD("vimpc-pop") },
+	{ 0,                            XF86XK_AudioPlay,		spawn,		SHCMD("mpc toggle") },
+	{ 0,                            XF86XK_AudioRaiseVolume,spawn,		SHCMD("mpc volume +3") },
+	{ 0,                            XF86XK_AudioLowerVolume,spawn, 		SHCMD("mpc volume -3") },
+	{ 0,                            XF86XK_AudioPrev,		spawn, 		SHCMD("mpc prev") },
+	{ 0,                            XF86XK_AudioNext,		spawn, 		SHCMD("mpc next") },
 	//lock
 	{ MODKEY|ControlMask,           XK_l,         spawn,          SHCMD("slock") },
 	TAGKEYS(                        XK_1,                         0)
