@@ -105,7 +105,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_0,         view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,         tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_n,         focusmon,       {.i = +1 } }, //next monitor
-	{ MODKEY|ShiftMask,             XK_n,         tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_n,         tagmonandfollow,{.i = +1 } },
 	{ MODKEY|ControlMask,           XK_n,         newtagallmon,   {.i = +1 } },
 	// rhythmbox
 	{ 0,                            XF86XK_Tools,			spawn,      SHCMD("vimpc-pop") },

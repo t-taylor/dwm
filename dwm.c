@@ -256,6 +256,7 @@ static void spawn(const Arg *arg);
 static Monitor *systraytomon(Monitor *m);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
+static void tagmonandfollow(const Arg *arg);
 //static void tagallmon(const Arg *arg);
 static void tile(Monitor *);
 static void togglebar(const Arg *arg);
@@ -2264,6 +2265,13 @@ tagmon(const Arg *arg)
     if (!selmon->sel || !mons->next)
         return;
     sendmon(selmon->sel, dirtomon(arg->i));
+}
+
+void
+tagmonandfollow(const Arg *arg)
+{
+    tagmon(arg);
+    focusmon(arg);
 }
 
 //void
