@@ -2,6 +2,7 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 10};
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
@@ -126,6 +127,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                         7)
 	TAGKEYS(                        XK_9,                         8)
 	{ MODKEY|ShiftMask,             XK_q,         quit,           {0} },
+	//gaps
+	{ MODKEY,                       XK_r,      setgaps,        {.i = -5 } },
+	{ MODKEY,                       XK_e,      setgaps,        {.i = +5 } },
+	{ MODKEY,                       XK_w,      setgaps,        {.i = GAP_RESET } },
+	{ MODKEY,                       XK_q,      setgaps,        {.i = GAP_TOGGLE} },
+
 };
 
 /* button definitions */
