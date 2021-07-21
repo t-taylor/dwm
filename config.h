@@ -97,10 +97,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_h,         shiftviewclients, { .i = -1 } },
 	{ MODKEY|ShiftMask,             XK_l,         shiftviewclientsandmove, { .i = +1 } },
 	{ MODKEY|ShiftMask,             XK_h,         shiftviewclientsandmove, { .i = -1 } },
-	{ MODKEY,                       XK_semicolon, viewnewtag,     {0} },
-	{ MODKEY,                       XK_apostrophe,moveandviewnewtag,{0} },
+	{ MODKEY,                       XK_slash,     viewnewtag,     {0} },
+	{ MODKEY,                       XK_semicolon, moveandviewnewtag,{0} },
 	{ MODKEY,                       XK_grave,     view,           {0} },
-	{ MODKEY,                       XK_BackSpace, killclient,     {0} },
+	{ MODKEY,                       XK_q,         killclient,     {0} },
 	{ MODKEY,                       XK_y,         cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_p,         togglefloating, {0} },
 	{ MODKEY,                       XK_0,         view,           {.ui = ~0 } },
@@ -131,7 +131,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,      setgaps,        {.i = -10 } },
 	{ MODKEY,                       XK_e,      setgaps,        {.i = +10 } },
 	{ MODKEY,                       XK_w,      setgaps,        {.i = GAP_RESET } },
-	{ MODKEY,                       XK_q,      setgaps,        {.i = GAP_TOGGLE} },
+	{ MODKEY,                       XK_t,      setgaps,        {.i = GAP_TOGGLE} },
 
 };
 
