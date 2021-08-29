@@ -108,7 +108,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_n,         focusmon,       {.i = +1 } }, //next monitor
 	{ MODKEY|ShiftMask,             XK_n,         tagmonandfollow,{.i = +1 } },
 	{ MODKEY|ControlMask,           XK_n,         newtagallmon,   {.i = +1 } },
-	// rhythmbox
+	// vol
+	{ MODKEY|ControlMask,           XK_k,		  spawn,		SHCMD("pamixer -i 5") },
+	{ MODKEY|ControlMask,           XK_j,		  spawn, 		SHCMD("pamixer -d 5") },
+	// mpv
 	{ 0,                            XF86XK_Tools,			spawn,      SHCMD("vimpc-pop") },
 	{ 0,                            XF86XK_AudioPlay,		spawn,		SHCMD("mpc toggle") },
 	{ 0,                            XF86XK_AudioRaiseVolume,spawn,		SHCMD("mpc volume +3") },
