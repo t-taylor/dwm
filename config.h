@@ -113,6 +113,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_j,		  spawn, 		SHCMD("pamixer -d 5") },
 	// mpv
 	{ 0,                            XF86XK_Tools,			spawn,      SHCMD("vimpc-pop") },
+	{ MODKEY,                       XK_c,			spawn,      SHCMD("vimpc-pop") },
 	{ 0,                            XF86XK_AudioPlay,		spawn,		SHCMD("mpc toggle") },
 	{ 0,                            XF86XK_AudioRaiseVolume,spawn,		SHCMD("mpc volume +3") },
 	{ 0,                            XF86XK_AudioLowerVolume,spawn, 		SHCMD("mpc volume -3") },
