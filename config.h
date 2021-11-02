@@ -99,7 +99,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,         shiftviewclientsandmove, { .i = -1 } },
 	{ MODKEY,                       XK_slash,     viewnewtag,     {0} },
 	{ MODKEY,                       XK_semicolon, moveandviewnewtag,{0} },
-	{ MODKEY,                       XK_grave,     view,           {0} },
+	{ MODKEY,                       XK_Delete,    view,           {0} },
 	{ MODKEY,                       XK_q,         killclient,     {0} },
 	{ MODKEY,                       XK_y,         cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_p,         togglefloating, {0} },
