@@ -111,6 +111,9 @@ static Key keys[] = {
 	// vol
 	{ MODKEY|ControlMask,           XK_k,		  spawn,		SHCMD("pamixer -i 5") },
 	{ MODKEY|ControlMask,           XK_j,		  spawn, 		SHCMD("pamixer -d 5") },
+	// backlight
+	{ MODKEY|ControlMask,           XK_u,		  spawn,		SHCMD("xbacklight -dec 5") },
+	{ MODKEY|ControlMask,           XK_i,		  spawn, 		SHCMD("xbacklight -inc 5") },
 	// mpv
 	{ 0,                            XF86XK_Tools,			spawn,      SHCMD("vimpc-pop") },
 	{ MODKEY,                       XK_c,			spawn,      SHCMD("vimpc-pop") },
