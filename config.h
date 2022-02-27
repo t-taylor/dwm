@@ -69,7 +69,7 @@ static const char *amenudrun[] = { "amenu", "-r", NULL };
 static const char *amenuwind[] = { "amenu", "-w", NULL };
 static const char *amenupass[] = { "amenu", "-p", NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", "-2", NULL };
-static const char *chromiu[]  = { "qutebrowser", NULL };
+static const char *chromiu[]  = { "chromium", NULL };
 static const char *maimshot[]  = { "clipshot", NULL };
 
 static Key keys[] = {
