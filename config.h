@@ -9,7 +9,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=8" };
+static const char *fonts[]          = { "monospace:size=16" };
 static const char col_bg[]          = "#282828";
 static const char col_gray1[]        = "#928374";
 static const char col_gray2[]        = "#a89984";
@@ -69,7 +69,7 @@ static const char *amenudrun[] = { "amenu", "-r", NULL };
 static const char *amenuwind[] = { "amenu", "-w", NULL };
 static const char *amenupass[] = { "amenu", "-p", NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", "-2", NULL };
-static const char *chromiu[]  = { "vivaldi-stable", NULL };
+static const char *chromiu[]  = { "pulse-browser", NULL };
 static const char *maimshot[]  = { "clipshot", NULL };
 
 static Key keys[] = {
@@ -108,22 +108,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_n,         focusmon,       {.i = +1 } }, //next monitor
 	{ MODKEY|ShiftMask,             XK_n,         tagmonandfollow,{.i = +1 } },
 	{ MODKEY|ControlMask,           XK_n,         newtagallmon,   {.i = +1 } },
-	// vol
-	{ MODKEY|ControlMask,           XK_k,		  spawn,		SHCMD("pamixer -i 5") },
-	{ MODKEY|ControlMask,           XK_j,		  spawn, 		SHCMD("pamixer -d 5") },
-	// backlight
-	{ MODKEY|ControlMask,           XK_u,		  spawn,		SHCMD("xbacklight -dec 5") },
-	{ MODKEY|ControlMask,           XK_i,		  spawn, 		SHCMD("xbacklight -inc 5") },
 	// mpv
 	{ 0,                            XF86XK_Tools,			spawn,      SHCMD("vimpc-pop") },
 	{ MODKEY,                       XK_c,			spawn,      SHCMD("vimpc-pop") },
-	{ 0,                            XF86XK_AudioPlay,		spawn,		SHCMD("mpc toggle") },
-	{ 0,                            XF86XK_AudioRaiseVolume,spawn,		SHCMD("mpc volume +3") },
-	{ 0,                            XF86XK_AudioLowerVolume,spawn, 		SHCMD("mpc volume -3") },
-	{ 0,                            XF86XK_AudioPrev,		spawn, 		SHCMD("mpc prev") },
-	{ 0,                            XF86XK_AudioNext,		spawn, 		SHCMD("mpc next") },
 	//lock
-	{ MODKEY|ControlMask,           XK_l,         spawn,          SHCMD("slock") },
+	{ MODKEY|ControlMask,           XK_l,         spawn,          SHCMD("dm-tool lock") },
 	TAGKEYS(                        XK_1,                         0)
 	TAGKEYS(                        XK_2,                         1)
 	TAGKEYS(                        XK_3,                         2)
@@ -139,7 +128,15 @@ static Key keys[] = {
 	{ MODKEY,                       XK_e,      setgaps,        {.i = +10 } },
 	{ MODKEY,                       XK_w,      setgaps,        {.i = GAP_RESET } },
 	{ MODKEY,                       XK_t,      setgaps,        {.i = GAP_TOGGLE} },
-
+	// media keys
+	{ 0,                            XF86XK_KbdBrightnessDown,		spawn, 		SHCMD("brightnessctl s 1%-") },
+	{ 0,                            XF86XK_KbdBrightnessUp,		spawn, 		SHCMD("brightnessctl s +1%") },
+	{ 0,                            XF86XK_AudioPlay,		spawn,		SHCMD("mpc toggle") },
+	{ 0,                            XF86XK_AudioRaiseVolume,spawn,		SHCMD("pamixer -i 5") },
+	{ 0,                            XF86XK_AudioLowerVolume,spawn, 		SHCMD("pamixer -d 5") },
+	{ 0,                            XF86XK_AudioMute,spawn,		SHCMD("pamixer -t") },
+	{ 0,                            XF86XK_AudioPrev,		spawn, 		SHCMD("mpc prev") },
+	{ 0,                            XF86XK_AudioNext,		spawn, 		SHCMD("mpc next") },
 };
 
 /* button definitions */
