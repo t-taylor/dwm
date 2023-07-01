@@ -130,7 +130,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setgaps,        {.i = GAP_TOGGLE} },
 	// media keys
 	{ 0,                            XF86XK_MonBrightnessDown,		spawn, 		SHCMD("brightnessctl s 5-") },
-	{ 0,                            XF86XK_MonBrightnessUp,		spawn, 		SHCMD("brightnessctl s 5%") },
+	{ 0,                            XF86XK_MonBrightnessUp,		spawn, 		SHCMD("brightnessctl s +5") },
 	{ 0,                            XF86XK_AudioPlay,		spawn,		SHCMD("mpc toggle") },
 	{ 0,                            XF86XK_AudioRaiseVolume,spawn,		SHCMD("pamixer -i 5") },
 	{ 0,                            XF86XK_AudioLowerVolume,spawn, 		SHCMD("pamixer -d 5") },
